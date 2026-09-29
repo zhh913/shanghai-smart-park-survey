@@ -21,9 +21,33 @@
 @media print{.report-toc,.report-chart-tools,.report-chart-data{display:none}.report-chart{padding:8px;margin:15px 0;break-inside:avoid}.report-chart img,.report-chart-viewport.is-expanded img{min-width:0;width:100%;max-height:220mm;object-fit:contain}.report-chart-viewport{overflow:visible}}
 .fusion-table caption{caption-side:top;text-align:left;font-weight:600;padding:12px 0;color:var(--ink)}
 .academic-report .fusion-tablewrap{overflow-x:auto}.academic-report .fusion-table{min-width:680px}@media print{.academic-report .fusion-tablewrap{overflow:visible}.academic-report .fusion-table{min-width:0}}
+
+/* Keep the three filters available while reading long sections. */
+@media screen{
+ html{scroll-padding-top:130px}
+ .toolbar{position:sticky;top:12px;z-index:50;box-shadow:0 5px 18px rgba(24,53,46,.18)}
+ .toolbar-extras{display:flex;flex-wrap:wrap;gap:12px;padding:14px 22px 18px;background:var(--ink);color:#fff;border-radius:0 0 12px 12px;margin-top:-8px}
+ .toolbar-extras .context{flex-basis:100%;font-size:13px;color:#d7e7de;padding-top:4px}
+ .toolbar-extras button{background:transparent;color:#fff;border-color:#60786e}
+ .toolbar-extras button:hover{background:#345447}
+}
+@media screen and (max-width:850px){
+ .toolbar{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;padding:12px 16px;top:8px}
+ .toolbar label{display:grid;gap:5px;width:100%;min-width:0}
+ .toolbar select{width:100%;min-width:0;padding:9px 4px 9px 8px;font-size:16px}
+ .toolbar-extras{padding:14px 16px}
+}
+@media screen and (max-width:450px){
+ .toolbar{gap:8px;padding:10px}
+ .toolbar label{font-size:12px}
+ .toolbar select{padding-left:5px}
+ .toolbar-extras{padding:14px 10px}
+ .toolbar-extras button{font-size:13px}
+}
+@media print{.toolbar-extras{display:none}}
 </style></head><body><div class="page">
 <header class="masthead"><div><div class="eyebrow">SHANGHAI · SMART PARKS</div><h1>上海智慧公园游客需求</h1><p class="muted">从设施接触、总体满意度到未来服务需求，按行政区、性别与年龄组合查看问卷结果。</p></div><div class="stamp">筛选后样本统计<br><span id="dateRange"></span><br>依据问卷第 1–13 题</div></header>
-<div class="toolbar"><label for="district">行政区<select id="district"></select></label><label for="sex">性别<select id="sex"></select></label><label for="age">年龄<select id="age"></select></label><div class="context">三个条件组合筛选，统计栏目同步更新；调查分析报告为固定全文。行政区按公园归属分类。</div><button id="export">导出筛选统计 CSV</button><button id="print">打印 / 保存 PDF</button></div>
+<div class="toolbar" role="region" aria-label="筛选条件"><label for="district">行政区<select id="district"></select></label><label for="sex">性别<select id="sex"></select></label><label for="age">年龄<select id="age"></select></label></div><div class="toolbar-extras"><div class="context">三个条件组合筛选，统计栏目同步更新；调查分析报告为固定全文。行政区按公园归属分类。</div><button id="export">导出筛选统计 CSV</button><button id="print">打印 / 保存 PDF</button></div>
 <nav class="tabs" role="tablist" aria-label="分析内容">
 <button role="tab" id="tab-overview" aria-controls="content" aria-selected="true" data-tab="overview">样本分布</button><button role="tab" id="tab-age" aria-controls="content" aria-selected="false" data-tab="age">Q1 年龄</button><button role="tab" id="tab-gender" aria-controls="content" aria-selected="false" data-tab="gender">Q2 性别</button><button role="tab" id="tab-parks" aria-controls="content" aria-selected="false" data-tab="parks">Q3 公园</button><button role="tab" id="tab-facilities" aria-controls="content" aria-selected="false" data-tab="facilities">Q4–Q9 现有设施</button><button role="tab" id="tab-satisfaction" aria-controls="content" aria-selected="false" data-tab="satisfaction">Q10 满意度</button><button role="tab" id="tab-needs" aria-controls="content" aria-selected="false" data-tab="needs">Q11–Q12 未来需求</button><button role="tab" id="tab-comments" aria-controls="content" aria-selected="false" data-tab="comments">Q13 开放意见</button><button role="tab" id="tab-compare" aria-controls="content" aria-selected="false" data-tab="compare">行政区对比</button><button role="tab" id="tab-report" aria-controls="content" aria-selected="false" data-tab="report">调查分析报告</button><button role="tab" id="tab-method" aria-controls="content" aria-selected="false" data-tab="method">统计口径</button></nav>
 <div id="status" class="caption" aria-live="polite"></div><main id="content" role="tabpanel" aria-labelledby="tab-overview"></main>
